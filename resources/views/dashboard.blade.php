@@ -11,6 +11,23 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("You're logged in!") }}
                 </div>
+
+                @if(!empty($jokes))
+                    @foreach($jokes as $joke)
+                        <div class="p-6 text-gray-900 dark:text-gray-100">
+                            <p>{{ $joke['setup'] ?? '' }}</p>
+                            <p>{{ $joke['punchline'] ?? '' }}</p>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <p>{{ $error ?? 'No joke found' }}</p>
+                    </div>
+                @endif
+
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    <button class="mt-4 px-6 py-2 bg-blue-500 text-white font-bold rounded-lg hover:bg-blue-700 transition duration-300" onclick="location.reload()">Refresh</button>
+                </div>
             </div>
         </div>
     </div>

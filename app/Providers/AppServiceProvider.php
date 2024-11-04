@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Services\SessionTokenStorage;
+use App\Services\TokenStorageInterface;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +22,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        Schema::defaultStringLength(191);
+
+        $this->app->bind(TokenStorageInterface::class, SessionTokenStorage::class);
     }
 }
